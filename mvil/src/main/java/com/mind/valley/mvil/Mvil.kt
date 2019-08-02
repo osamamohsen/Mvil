@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.support.annotation.AnyRes
 import android.support.annotation.DrawableRes
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 

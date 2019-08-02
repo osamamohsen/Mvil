@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
    implementation 'com.github.osamamohsen:Mvil:1.2'
+   implementation 'org.jetbrains.anko:anko:0.10.5'
 }
 ```
 

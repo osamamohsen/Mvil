@@ -40,7 +40,6 @@ class LoadBitmapFromURLTask(
             if (url != null) {
                 val bitmap = ImageFetcher.decodeSampledBitmapFromUrl(url, mWidth, mHeight)
                 if (bitmap != null) {
-                    imageView.setImageBitmap(bitmap)
 
                     uiThread {
                         if (mCacheImage) {

@@ -26,7 +26,7 @@ Or Maven:
 <dependency>
     <groupId>com.github.osamamohsen</groupId>
     <artifactId>Mvil</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
 </dependency>
 <repositories>
      <repository>

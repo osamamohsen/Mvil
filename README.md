@@ -2,8 +2,45 @@
 Mvil is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
 Mvil primary focus is on making scrolling any kind of a list of images as smooth and fast as possible, but Glide is also effective for almost any case where you need to fetch, resize, and display a remote image.
 
+Download
+--------
+For detailed instructions and requirements, see Glide's [download and setup docs page][28].
 
-# Miva Image Loader
+You can download a jar from GitHub's [releases page][1].
+
+Or use Gradle:
+
+```gradle
+repositories {
+  mavenCentral()
+  google()
+}
+
+dependencies {
+   implementation 'com.github.osamamohsen:Mvil:1.0'
+}
+```
+
+Or Maven:
+
+```xml
+<dependency>
+    <groupId>com.github.osamamohsen</groupId>
+    <artifactId>Mvil</artifactId>
+    <version>1.0</version>
+</dependency>
+<repositories>
+     <repository>
+         <id>jitpack.io</id>
+         <url>https://jitpack.io</url>
+     </repository>
+</repositories>
+```
+
+
+
+How do I use Glide?
+-------------------
 
 #### Using Kotlin Extensions
 ``` kotlin

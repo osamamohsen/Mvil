@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-   implementation 'com.github.osamamohsen:Mvil:1.3'
+   implementation 'com.github.osamamohsen:Mvil:1.4'
    implementation 'org.jetbrains.anko:anko:0.10.5'
 }
 ```
@@ -26,7 +26,7 @@ Or Maven:
 <dependency>
     <groupId>com.github.osamamohsen</groupId>
     <artifactId>Mvil</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
 </dependency>
 <repositories>
      <repository>
@@ -47,7 +47,7 @@ imageView.placeholder = resources.getDrawable(R.drawable.placeholder)
 imageView.source = imageUrl // Url or drawable resource
 ```
 #### Using Mvil Builder
-```java - kotlin
+``` kotlin
 Mvil.with(this)
      .placeholder(R.drawable.placeholder)
      .source(imageUrl)
@@ -55,9 +55,9 @@ Mvil.with(this)
 ```
 
 ##### Other options
-```java - kotlin
+``` kotlin
 Mvil.with(this)
-     .placeholder(R.drawable.placeholder)
+     .placeholder(R.drawable.placeholder) // set in error loading
      .resize(300, 300) // here resize image default (500 x 500)
      .disableCache() // Disable cache. By default its enabled -> enableCache(true)
      .setMaxCapacityCache(your_float_here) // default memoryClass * 1024 * 1024 as float

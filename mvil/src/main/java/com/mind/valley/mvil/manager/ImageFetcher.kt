@@ -14,7 +14,7 @@ import java.net.URL
  * Created by Osama Mohsen.
  */
 object ImageFetcher {
-    fun decodeSampledBitmapFromUrl(url: URL, reqWidth: Int, reqHeight: Int): Bitmap {
+    fun decodeSampledBitmapFromUrl(url: URL, reqWidth: Int, reqHeight: Int): Bitmap? {
 
         /*Downloading*/
         var input: InputStream? = getHTTPConnectionInputStream(url)
@@ -34,6 +34,7 @@ object ImageFetcher {
                 input.close()
         } catch (e: IOException) {
             e.printStackTrace()
+            return null
         }
 
         input = getHTTPConnectionInputStream(url)

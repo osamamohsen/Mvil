@@ -1,11 +1,9 @@
 package com.irozon.mvil.async
 
+import android.graphics.Bitmap
 import android.util.Log
 import android.view.View
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.AlphaAnimation
-import android.view.animation.AnimationSet
-import android.view.animation.DecelerateInterpolator
+import android.view.animation.*
 import android.widget.ImageView
 
 import com.irozon.mvil.cache.ImageCache
@@ -15,8 +13,6 @@ import org.jetbrains.anko.uiThread
 
 import java.net.MalformedURLException
 import java.net.URL
-import android.view.animation.Animation
-
 
 
 /**
@@ -28,7 +24,8 @@ class LoadBitmapFromURLTask(
     private val mCacheImage: Boolean,
     private val mWidth: Int,
     private val mHeight: Int,
-    private val strUrl: String
+    private val strUrl: String,
+    private val mPlaceHolderBitmap: Bitmap?
 ) {
 
     fun execute() {
@@ -39,22 +36,29 @@ class LoadBitmapFromURLTask(
             } catch (e: MalformedURLException) {
                 e.printStackTrace()
             }
+
             if (url != null) {
                 val bitmap = ImageFetcher.decodeSampledBitmapFromUrl(url, mWidth, mHeight)
-                uiThread {
-                    if (mCacheImage) {
-                        mCache?.put(strUrl, bitmap)
-                    }
-                    imageView.visibility = View.VISIBLE
-
-                    val fadeOut = AlphaAnimation(0f, 1f)
-                    fadeOut.interpolator = AccelerateInterpolator()
-                    fadeOut.duration = 1000
-                    imageView.startAnimation(fadeOut)
-
-
+                if (bitmap != null) {
                     imageView.setImageBitmap(bitmap)
 
+                    uiThread {
+                        if (mCacheImage) {
+                            mCache?.put(strUrl, bitmap)
+                        }
+                        imageView.visibility = View.VISIBLE
+
+                        val fadeOut = AlphaAnimation(0f, 1f)
+                        fadeOut.interpolator = AccelerateInterpolator()
+                        fadeOut.duration = 1000
+                        imageView.startAnimation(fadeOut)
+                        imageView.setImageBitmap(bitmap)
+
+                    }
+                } else {
+                    imageView.visibility = View.VISIBLE
+                    if(mPlaceHolderBitmap != null)
+                        imageView.setImageBitmap(mPlaceHolderBitmap)
                 }
             }
         }

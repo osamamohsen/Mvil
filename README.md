@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-   implementation 'com.github.osamamohsen:Mvil:1.1'
+   implementation 'com.github.osamamohsen:Mvil:1.2'
 }
 ```
 
@@ -25,7 +25,7 @@ Or Maven:
 <dependency>
     <groupId>com.github.osamamohsen</groupId>
     <artifactId>Mvil</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
 </dependency>
 <repositories>
      <repository>

@@ -28,20 +28,10 @@ class LoadBitmapFromDrawableTask(private val mContext: Context?, private val ima
                 }
 
                 imageView.visibility = View.VISIBLE
-                val fadeIn = AlphaAnimation(0f, 1f)
-                fadeIn.interpolator = DecelerateInterpolator() //add this
-                fadeIn.duration = 1000
-
-                val fadeOut = AlphaAnimation(1f, 0f)
-                fadeOut.interpolator = AccelerateInterpolator() //and this
-                fadeOut.startOffset = 1000
+                val fadeOut = AlphaAnimation(0f, 1f)
+                fadeOut.interpolator = AccelerateInterpolator()
                 fadeOut.duration = 1000
-
-                val animation = AnimationSet(false) //change to false
-                animation.addAnimation(fadeIn)
-                animation.addAnimation(fadeOut)
-                imageView.setAnimation(animation);
-
+                imageView.startAnimation(fadeOut)
                 imageView.setImageBitmap(bitmap)
             }
         }

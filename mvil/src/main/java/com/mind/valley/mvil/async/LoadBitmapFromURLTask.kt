@@ -15,6 +15,9 @@ import org.jetbrains.anko.uiThread
 
 import java.net.MalformedURLException
 import java.net.URL
+import android.view.animation.Animation
+
+
 
 /**
  * Created by Osama Mohsen.
@@ -43,19 +46,12 @@ class LoadBitmapFromURLTask(
                         mCache?.put(strUrl, bitmap)
                     }
                     imageView.visibility = View.VISIBLE
-                    val fadeIn = AlphaAnimation(0f, 1f)
-                    fadeIn.interpolator = DecelerateInterpolator() //add this
-                    fadeIn.duration = 1000
 
-                    val fadeOut = AlphaAnimation(1f, 0f)
-                    fadeOut.interpolator = AccelerateInterpolator() //and this
-                    fadeOut.startOffset = 1000
+                    val fadeOut = AlphaAnimation(0f, 1f)
+                    fadeOut.interpolator = AccelerateInterpolator()
                     fadeOut.duration = 1000
+                    imageView.startAnimation(fadeOut)
 
-                    val animation = AnimationSet(false) //change to false
-                    animation.addAnimation(fadeIn)
-                    animation.addAnimation(fadeOut)
-                    imageView.setAnimation(animation);
 
                     imageView.setImageBitmap(bitmap)
 

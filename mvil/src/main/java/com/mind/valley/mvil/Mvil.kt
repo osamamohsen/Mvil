@@ -125,8 +125,9 @@ class Mvil {
         return getMiva()
     }
 
-    fun setMaxCapacityCache(float: Float){
+    fun setMaxCapacityCache(float: Float): Mvil{
         cacheMaxCapacity = float
+        return getMiva()
     }
 
     /**

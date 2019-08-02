@@ -13,7 +13,6 @@ import com.irozon.mvil.async.LoadBitmapFromDrawableTask
 import com.irozon.mvil.async.LoadBitmapFromURLTask
 import com.irozon.mvil.cache.ImageCache
 import com.irozon.mvil.manager.PlaceHolder
-import com.mind.valley.mvil.app.MyApplication
 import java.lang.ref.WeakReference
 import kotlin.let
 
@@ -30,18 +29,19 @@ class Mvil {
     private var mWidth = DEFAULT_WIDTH
     private var mHeight = DEFAULT_HEIGHT
     private var cacheAllowed = 1f
-    private var cacheMaxCapacity = ((MyApplication.instance?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
-        .memoryClass * 1024 * 1024).toFloat()
 
     companion object {
         private var contextWeakReference: WeakReference<Context>? = null
         private lateinit var mvilWeakReference: WeakReference<Mvil>
         private var DEFAULT_WIDTH = 500
         private var DEFAULT_HEIGHT = 500
+        private var cacheMaxCapacity:Float = 0f
 
         fun with(context: Context): Mvil {
 
             contextWeakReference = WeakReference(context)
+
+            cacheMaxCapacity = ((context.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).memoryClass * 1024 * 1024).toFloat()
 
             val mvil = Mvil()
             mvilWeakReference = WeakReference(mvil)

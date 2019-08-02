@@ -5,7 +5,7 @@ import android.widget.ImageView
 import com.mind.valley.mvil.Mvil
 
 /**
- * Created by hammad.akram on 3/9/18.
+ * Created by Osama Mohsen
  */
 
 var ImageView.source: Any

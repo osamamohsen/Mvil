@@ -6,13 +6,14 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.support.annotation.AnyRes
 import android.support.annotation.DrawableRes
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 
-import com.irozon.mvil.async.LoadBitmapFromDrawableTask
-import com.irozon.mvil.async.LoadBitmapFromURLTask
 import com.irozon.mvil.cache.ImageCache
 import com.irozon.mvil.manager.PlaceHolder
+import com.mind.valley.mvil.async.DownloadDrawableTask
+import com.mind.valley.mvil.async.DownloadFromUrlTask
 import java.lang.ref.WeakReference
 import kotlin.let
 
@@ -35,13 +36,14 @@ class Mvil {
         private lateinit var mvilWeakReference: WeakReference<Mvil>
         private var DEFAULT_WIDTH = 500
         private var DEFAULT_HEIGHT = 500
-        private var cacheMaxCapacity:Float = 0f
+        private var cacheMaxCapacity: Float = 0f
 
         fun with(context: Context): Mvil {
 
             contextWeakReference = WeakReference(context)
 
-            cacheMaxCapacity = ((context.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).memoryClass * 1024 * 1024).toFloat()
+            cacheMaxCapacity =
+                ((context.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).memoryClass * 1024 * 1024).toFloat()
 
             val mvil = Mvil()
             mvilWeakReference = WeakReference(mvil)
@@ -51,10 +53,10 @@ class Mvil {
 
             return getMiva()
         }
+
         private fun getContext(): Context? {
             return contextWeakReference?.get()
         }
-
 
 
         private fun getMiva(): Mvil {
@@ -103,6 +105,7 @@ class Mvil {
         if (placeholder != PlaceHolder.placeHolder) {
             try {
                 // Try for drawable resource
+                Log.e("placeHolder","start");
                 mPlaceHolderBitmap = Bitmap.createScaledBitmap(
                     BitmapFactory.decodeResource(
                         getContext()?.resources,
@@ -112,19 +115,22 @@ class Mvil {
                 PlaceHolder.placeHolder = placeholder
                 PlaceHolder.placeHolderBitmap = mPlaceHolderBitmap
                 PlaceHolder.placeHolderColor = -1
+                Log.e("placeHolder","done");
             } catch (ignored: Exception) {
+                Log.e("placeHolder","ignored"+ignored.message);
                 PlaceHolder.placeHolder = placeholder
                 PlaceHolder.placeHolderBitmap = null
                 PlaceHolder.placeHolderColor = placeholder
             }
 
         } else {
+            Log.e("placeHolder","null");
             mPlaceHolderBitmap = PlaceHolder.placeHolderBitmap
         }
         return getMiva()
     }
 
-    fun setMaxCapacityCache(float: Float): Mvil{
+    fun setMaxCapacityCache(float: Float): Mvil {
         cacheMaxCapacity = float
         return getMiva()
     }
@@ -173,7 +179,13 @@ class Mvil {
             imageView.setImageBitmap(bitmap)
         } else {
             if (mUrl != null) { /*Load using url*/
-                val task = LoadBitmapFromURLTask(
+
+                if(mPlaceHolderBitmap == null)
+                    Log.e("osama_place","null")
+                else
+                    Log.e("osama_place","not null")
+
+                val task = DownloadFromUrlTask(
                     imageView,
                     imageCache,
                     enableCache,
@@ -193,7 +205,7 @@ class Mvil {
                 task.execute()
             }
             if (mRes != -100) { /*Load using Drawable resource*/
-                val task = LoadBitmapFromDrawableTask(
+                val task = DownloadDrawableTask(
                     getContext(), imageView, imageCache,
                     enableCache, mWidth, mHeight, mRes
                 )

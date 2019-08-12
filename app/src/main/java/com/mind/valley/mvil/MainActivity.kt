@@ -2,6 +2,7 @@ package com.mind.valley.mvil
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.irozon.mvil.extension.placeholder
 import com.irozon.mvil.extension.source
 import kotlinx.android.synthetic.main.activity_main.*
 

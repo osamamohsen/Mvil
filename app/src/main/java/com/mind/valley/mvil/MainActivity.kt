@@ -2,7 +2,9 @@ package com.mind.valley.mvil
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.irozon.mvil.extension.placeholder
+import android.support.v4.content.ContextCompat
+import android.util.Log
+import android.view.View
 import com.irozon.mvil.extension.source
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             .disableCache() // Disable cache. By default its enabled -> enableCache(true)
             .source(second)
             .loadImage(img_second)
+
 
         img_third.source = third
     }

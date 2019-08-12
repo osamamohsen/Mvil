@@ -1,7 +1,7 @@
 # Mvil
 [![](https://jitpack.io/v/osamamohsen/Mvil.svg)](https://jitpack.io/#osamamohsen/Mvil)
 
-Mvil is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
+Mvil image loader is a fast and efficient open source media management and image loading framework for Android that wraps media decoding, memory and disk caching, and resource pooling into a simple and easy to use interface.
 Mvil primary focus is on making scrolling any kind of a list of images as smooth and fast as possible, but Mvil is also effective for almost any case where you need to fetch, resize, and display a remote image.
 
 
@@ -19,7 +19,6 @@ repositories {
 
 dependencies {
    implementation 'com.github.osamamohsen:Mvil:x.x'
-   implementation 'org.jetbrains.anko:anko:0.10.5'
 }
 ```
 
@@ -46,7 +45,6 @@ How do I use Mvil?
 
 #### Using Kotlin Extensions
 ``` kotlin
-imageView.placeholder = resources.getDrawable(R.drawable.placeholder)
 imageView.source = imageUrl // Url or drawable resource
 ```
 #### Using Mvil Builder
